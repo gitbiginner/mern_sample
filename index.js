@@ -1,9 +1,12 @@
-const {request} = require('undici');
+const fs = require('fs');
 
-request('https://www.yahoo.co.jp')
-.then((res) => {
-    return res.body.text()
-})
-.then((body) => {
-    console.log(body);
-});
+for(let i = 0; i < 100; i++) {
+  const text=`write: ${i}`;
+  fs.writeFile('./data.txt', text, (err) => {
+    if (err) {
+    console.error(err);
+  }
+  console.log(text);
+  });
+
+}
