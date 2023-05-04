@@ -1,12 +1,18 @@
 const fs = require('fs');
 
-for(let i = 0; i < 100; i++) {
-  const text=`write: ${i}`;
-  fs.writeFile('./data.txt', text, (err) => {
-    if (err) {
-    console.error(err);
+const writeFile = (i) => {
+  if (i >= 100){
+    return ;
   }
-  console.log(text);
-  });
 
-}
+  const text = `write: ${i}`;
+  fs.writeFile('./data1.txt', text, (err) =>{
+    if (err){
+      console.error(err);
+      return false
+    }
+    console.log(text);
+    writeFile(i+1);
+  });
+};
+writeFile(90);
